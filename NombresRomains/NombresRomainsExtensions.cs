@@ -2,34 +2,33 @@
 
 public static class NombresRomainsExtensions
 {
-    public const string ErrorMessage = "Votre nombre n'est pas pris en charge.";
+    private static readonly IDictionary<int, string> KnownSymbols = new Dictionary<int, string>()
+    {
+        { 1, "I" },
+        { 5, "V" },
+        { 10, "X" },
+    };
 
     public static string ToRomanNumbers(this int number)
     {
+        {
+            if (KnownSymbols.TryGetValue(number, out var symbol))
+                return symbol;
+        }
+
+        {
+            if (KnownSymbols.TryGetValue(number + 1, out var symbol))
+                return ToRomanNumbers(1) + symbol;
+        }
+
         switch (number)
         {
             case <= 3:
                 return new string('I', number);
-            case 4:
-                return "IV";
-            case 5:
-                return "V";
-            case 6:
-                return "VI";
-            case 7:
-                return "VII";
-            case 8:
-                return "VIII";
-            case 9:
-                return "IX";
-            case 10:
-                return "X";
-            case 11:
-                return "XI";
-            case 12:
-                return "XII";
-            case 13:
-                return "XIII";
+            case <= 8:
+                return ToRomanNumbers(5) + ToRomanNumbers(number - 5);
+            case <= 13:
+                return ToRomanNumbers(10) + ToRomanNumbers(number - 10);
             case 14:
                 return "XIV";
             case 15:
