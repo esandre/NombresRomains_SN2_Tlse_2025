@@ -11,11 +11,19 @@ public class UnitTest1
         Assert.Equal(new string('I', nombreArabe), nombreArabe.ToRomanNumbers());
     }
 
-    [Fact]
-    public void Test4()
+    [Theory(DisplayName = "Une unité avant un symbole s'écrit avec I précédant ce symbole")]
+    [InlineData(4)]
+    [InlineData(9)]
+    [InlineData(14)]
+    [InlineData(19)]
+    public void UnAvantSymboleUnitéPrécède(int valeurTestée)
     {
-        const int nombre = 4;
-        Assert.Equal("IV", nombre.ToRomanNumbers());
+        var valeurSymbole = valeurTestée + 1;
+        var representationSymbole = valeurSymbole.ToRomanNumbers();
+        var nombreRomainTesté = valeurTestée.ToRomanNumbers();
+
+        var attendu = representationSymbole.Insert(representationSymbole.Length - 1, "I");
+        Assert.Equal(attendu, nombreRomainTesté);
     }
 
     [Theory(DisplayName = "Entre 5 et 8, on met V plus (5-n) * I")]
@@ -28,109 +36,24 @@ public class UnitTest1
         Assert.Equal("V" + new string('I', nombreArabe - 5), nombreArabe.ToRomanNumbers());
     }
 
-    [Fact]
-    public void Test5()
+    [Theory(DisplayName = "Entre 10 et 13, on met X plus (10-n) * I")]
+    [InlineData(10)]
+    [InlineData(11)]
+    [InlineData(12)]
+    [InlineData(13)]
+    public void TestDixPlusUnité(int nombreArabe)
     {
-        const int nombre = 5;
-        Assert.Equal("V", nombre.ToRomanNumbers());
+        Assert.Equal("X" + new string('I', nombreArabe - 10), nombreArabe.ToRomanNumbers());
     }
 
-    [Fact]
-    public void Test6()
+    [Theory(DisplayName = "Entre 15 et 18, on met XV plus (15-n) * I")]
+    [InlineData(15)]
+    [InlineData(16)]
+    [InlineData(17)]
+    [InlineData(18)]
+    public void TestQuinzePlusUnité(int nombreArabe)
     {
-        const int nombre = 6;
-        Assert.Equal("VI", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test7()
-    {
-        const int nombre = 7;
-        Assert.Equal("VII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test8()
-    {
-        const int nombre = 8;
-        Assert.Equal("VIII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test9()
-    {
-        const int nombre = 9;
-        Assert.Equal("IX", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test10()
-    {
-        const int nombre = 10;
-        Assert.Equal("X", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test11()
-    {
-        const int nombre = 11;
-        Assert.Equal("XI", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test12()
-    {
-        const int nombre = 12;
-        Assert.Equal("XII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test13()
-    {
-        const int nombre = 13;
-        Assert.Equal("XIII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test14()
-    {
-        const int nombre = 14;
-        Assert.Equal("XIV", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test15()
-    {
-        const int nombre = 15;
-        Assert.Equal("XV", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test16()
-    {
-        const int nombre = 16;
-        Assert.Equal("XVI", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test17()
-    {
-        const int nombre = 17;
-        Assert.Equal("XVII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test18()
-    {
-        const int nombre = 18;
-        Assert.Equal("XVIII", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test19()
-    {
-        const int nombre = 19;
-        Assert.Equal("XIX", nombre.ToRomanNumbers());
+        Assert.Equal("XV" + new string('I', nombreArabe - 15), nombreArabe.ToRomanNumbers());
     }
 
     [Fact]
