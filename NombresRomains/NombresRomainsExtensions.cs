@@ -8,12 +8,8 @@ public static class NombresRomainsExtensions
     {
         switch (number)
         {
-            case 1:
-                return "I";
-            case 2:
-                return "II";
-            case 3:
-                return "III";
+            case <= 3:
+                return new string('I', number);
             case 4:
                 return "IV";
             case 5:

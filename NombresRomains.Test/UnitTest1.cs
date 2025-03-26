@@ -2,25 +2,13 @@ namespace NombresRomains.Test;
 
 public class UnitTest1
 {
-    [Fact]
-    public void Test1()
+    [Theory(DisplayName = "Entre 1 et 3, on répète n * I")]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    public void TestUnité(int nombreArabe)
     {
-        const int nombre = 1;
-        Assert.Equal("I", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test2()
-    {
-        const int nombre = 2;
-        Assert.Equal("II", nombre.ToRomanNumbers());
-    }
-
-    [Fact]
-    public void Test3()
-    {
-        const int nombre = 3;
-        Assert.Equal("III", nombre.ToRomanNumbers());
+        Assert.Equal(new string('I', nombreArabe), nombreArabe.ToRomanNumbers());
     }
 
     [Fact]
@@ -28,6 +16,16 @@ public class UnitTest1
     {
         const int nombre = 4;
         Assert.Equal("IV", nombre.ToRomanNumbers());
+    }
+
+    [Theory(DisplayName = "Entre 5 et 8, on met V plus (5-n) * I")]
+    [InlineData(5)]
+    [InlineData(6)]
+    [InlineData(7)]
+    [InlineData(8)]
+    public void TestCinqPlusUnité(int nombreArabe)
+    {
+        Assert.Equal("V" + new string('I', nombreArabe - 5), nombreArabe.ToRomanNumbers());
     }
 
     [Fact]
