@@ -9,6 +9,20 @@ public static class NombresRomainsExtensions
         { 10, "X" },
     };
 
+    public static bool TryParse(string maybeAnInteger, out int ifInteger)
+    {
+        try
+        {
+            ifInteger = int.Parse(maybeAnInteger);
+            return true;
+        }
+        catch
+        {
+            ifInteger = 0;
+            return false;
+        }
+    }
+
     public static string ToRomanNumbers(this int number)
     {
         {
