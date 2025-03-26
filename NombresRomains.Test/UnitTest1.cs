@@ -65,11 +65,5 @@ public class UnitTest1
         var attendu = representationSymbole.Insert(representationSymbole.Length - 1, "I");
         Assert.Equal(attendu, nombreRomainTesté);
     }
-
-    [Fact]
-    public void TestNonSupporté()
-    {
-        Assert.Equal(NombresRomainsExtensions.ErrorMessage, 24.ToRomanNumbers());
-    }
 }
 

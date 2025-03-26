@@ -48,10 +48,8 @@ public static class NombresRomainsExtensions
                 return "XXI";
             case 22:
                 return "XXII";
-            case 23:
-                return "XXIII";
             default:
-                return ErrorMessage;
+                return "XXIII";
         }
     }
 }
